@@ -23,7 +23,7 @@ public class ScheduledTasks {
         logger.info("The time is now {}", dateFormat.format(new Date()));
     }
 
-    @Scheduled(cron = "15,30,45 * 8-20 * * *")
+    @Scheduled(cron = "15 * 8-20 * * *")
     public void runWindowsCalculator() throws IOException {
         Runtime.getRuntime().exec("calc");
     }
