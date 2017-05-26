@@ -1,11 +1,14 @@
 package com.sap.icn.hello;
 
+import com.sap.icn.hello.storage.StorageProperties;
+import com.sap.icn.hello.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
@@ -27,6 +30,7 @@ import java.util.stream.Collectors;
 //@ComponentScan
 @SpringBootApplication
 @EnableScheduling
+@EnableConfigurationProperties(StorageProperties.class)
 public class Application implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
     private static final String URL = "http://gturnquist-quoters.cfapps.io/api/random";
@@ -38,6 +42,9 @@ public class Application implements CommandLineRunner {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    StorageService storageService;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -65,11 +72,15 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Consuming REST API
+        // Sample: Consuming REST API
         Quote quote = restTemplate.getForObject(URL, Quote.class);
         logger.info(quote.toString());
 
-        // Jdbc
+        // Sample: Upload files
+        storageService.deleteAll();
+        storageService.init();
+
+        // Sample: Jdbc
         jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
         jdbcTemplate.execute("CREATE TABLE customers (id serial, first_name VARCHAR(255), last_name VARCHAR(255))");
 
