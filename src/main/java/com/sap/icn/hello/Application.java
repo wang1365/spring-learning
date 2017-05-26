@@ -76,6 +76,7 @@ public class Application implements CommandLineRunner {
         List<Object[]> names = Arrays.asList("Xiaochuan Wang", "Shun Xu", "Yun Ma", "Huateng Ma")
                 .stream()
                 .map(v -> v.split(" "))
+                
                 .collect(Collectors.toList());
 
         names.forEach(name -> logger.info(String.format("Insert name: %s %s", name[0], name[1])));
