@@ -1,4 +1,4 @@
-package com.sap.icn.hello.singleton;
+package com.sap.icn.other.singleton;
 
 /**
  * Created by I321761 on 2017/5/31.
