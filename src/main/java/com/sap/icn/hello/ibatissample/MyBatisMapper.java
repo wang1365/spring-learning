@@ -1,9 +1,6 @@
 package com.sap.icn.hello.ibatissample;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -17,4 +14,7 @@ public interface MyBatisMapper {
 
     @Insert("insert into city (id, name) values (#{city.id}, #{city.name})")
     boolean addCity(@Param("city")City city);
+
+    @Update("update city set `name` = #{city.name} where `id`=#{city.id}")
+    boolean updateCity(@Param("city")City city);
 }

@@ -26,4 +26,10 @@ public class MyBatisController {
 //        myBatisMapper.addCity(id, name);
         return myBatisMapper.getCities();
     }
+
+    @RequestMapping("/city/update")
+    List<City> updateCity(@Param("id")int id, @Param("name")String name) {
+        myBatisMapper.updateCity(new City(id, name));
+        return myBatisMapper.getCities();
+    }
 }
