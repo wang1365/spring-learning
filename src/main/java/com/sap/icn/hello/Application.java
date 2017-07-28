@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 //@EnableAutoConfiguration
 //@ComponentScan
 @SpringBootApplication
-@EnableScheduling
+//@EnableScheduling
 @EnableConfigurationProperties(StorageProperties.class)
 public class Application implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
