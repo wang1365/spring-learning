@@ -17,7 +17,4 @@ public interface MyBatisMapper {
 
     @Insert("insert into city (id, name) values (#{city.id}, #{city.name})")
     boolean addCity(@Param("city")City city);
-
-//    @Insert("insert into city (id, name) values (${id}, ${name})")
-//    List<City> addCity(int id, String name);
 }
