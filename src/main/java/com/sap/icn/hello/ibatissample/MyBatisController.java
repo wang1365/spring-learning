@@ -25,7 +25,7 @@ public class MyBatisController {
     }
 
     @RequestMapping("/city")
-    City getCities(@Param("id")int id) {
+    City getOneCity(@Param("id")int id) {
         City city = sqlSession.selectOne("com.sap.icn.mappers.selectOneCity", id);
         return city;
     }
