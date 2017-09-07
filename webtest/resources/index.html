@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="./bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+	<!--link rel="stylesheet" href="./bootstrap/css/bootstrap-responsive.min.css" crossorigin="anonymous"-->
+	<link rel="stylesheet" href="./bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<!--script  src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">	</script-->
+	<script  src="./jquery/jquery-3.2.1.min.js"></script>
+	<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"></script>
+	<script src="./bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<script src="./bootstrap//bootstrap-treeview.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<script src="./util.js"></script>
+	<script src="./app.js"></script>
+</head>
+	
+<body>
+<div ng-app="plc" ng-controller="plcCtrl">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div id="tree"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Rest API:</div>
+					<div class="btn-group-vertical" role="group" aria-lable="...">
+						<button type="button" class="btn btn-default" ng-click="initSession()">init-session</button>
+						<button type="button" class="btn btn-default" ng-click="ping()">ping</button>
+						<button type="button" class="btn btn-default" ng-click="logout()">logout</button>
+						<button type="button" class="btn btn-default" ng-click="customfieldsFormulaGet()">customfieldsformula get</button>
+						<button type="button" class="btn btn-default" ng-click="customfieldsFormulaCreate()">customfieldsformula create</button>
+					</div>
+				</div>
+				<div class="panel panel-success">
+					<div class="panel-heading">Custom API:</div>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">URL:</span>
+						<input type="text" value="{{url}}" class="form-control" placeholder="/sap/plc/xs/rest/dispatcher.xsjs/ping" aria-describedby="basic-addon1">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon2">Method:</span>
+						<input type="text" value="{{method}}" class="form-control" placeholder="" aria-describedby="basic-addon2">
+					</div>
+					<button type="button" ng-click="customRequest()">Send</button>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Response: [ {{httpHeadLine}} ]</div>
+					<div class="form-group">
+	                	<textarea class="form-control" rows="100">{{response}}</textarea> 
+	            	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
